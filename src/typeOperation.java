@@ -38,7 +38,7 @@ public class typeOperation{
             System.out.println("================================");
             System.out.println("Deseja fazer OUTRA operação com esse resultado?");
             System.out.println("1 - Sim");
-            System.out.println("2 - Não");
+            System.out.println("Caso queira sair apenas clicar em qualquer número!");
             continuarPrograma = input.nextInt();
 
         } while (continuarPrograma == 1);
@@ -72,8 +72,8 @@ public class typeOperation{
             }
 
             System.out.println("\nDeseja continuar com esta operação?");
-            System.out.println("1 - Sim (repetir operação)");
-            System.out.println("2 - Não (trocar operação)");
+            System.out.println("1 -> Sim (repetir operação)");
+            System.out.println("Qualquer número -> Não (irá permitir trocar operação)");
             double b = calculator.getB();
             String operacao = null;
             if(select == 1){
