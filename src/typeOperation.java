@@ -1,15 +1,6 @@
-public class typeOperation{
-    private final view view;
-    private final calcBasic calculator;
-    private final historicoCalc historico;
+public record typeOperation(view view, historicoCalc historico) {
 
-    public typeOperation(){
-        this.view = new view();
-        this.calculator = new calcBasic();
-        this.historico = new historicoCalc();
-    }
-
-    public void calcinitial(){
+    public void calcinitial() {
         System.out.println("Digite seu primeiro valor:");
         double a = view.getValorDouble();
         int continuarPrograma;
@@ -22,7 +13,7 @@ public class typeOperation{
             System.out.println("1: + , 2: - , 3: / , 4: * ");
             int select = view.getValorInt();
 
-            while(select < 1 || select > 4){
+            while (select < 1 || select > 4) {
                 System.out.println("Operação não localizada, tente novamente!");
                 System.out.println("---------------------------------");
                 System.out.println("Qual operação deseja selecionar?");
@@ -40,54 +31,46 @@ public class typeOperation{
             continuarPrograma = view.getValorInt();
 
         } while (continuarPrograma == 1);
+
         System.out.println("\nResultado final: " + a);
         System.out.println("Encerrando calculadora...");
         historico.exibirHistorico();
     }
 
-    public double operationBasic(int select, double a){
+    public double operationBasic(int select, double a) {
         double resultado = a;
         int continueOperation;
 
+        // POLIMORFISMO: Cria a operação baseado no select
+        IOperacao operacao = FabricaOperacoes.criar(select);
+
         do {
-            switch (select) {
-                case 1:
-                    resultado = calculator.getSoma(resultado);
-                    System.out.println("Resultado: " + resultado);
-                    break;
-                case 2:
-                    resultado = calculator.getSubtracao(resultado);
-                    System.out.println("Resultado: " + resultado);
-                    break;
-                case 3:
-                    resultado = calculator.getDivisao(resultado);
-                    System.out.println("Resultado: " + resultado);
-                    break;
-                case 4:
-                    resultado = calculator.getMultiplicacao(resultado);
-                    System.out.println("Resultado: " + resultado);
-                    break;
+            System.out.println("Digite o segundo valor:");
+            double b = view.getValorDouble();
+
+            try {
+                double valorAnterior = resultado;
+
+                // Calcula usando a interface (polimorfismo)
+                resultado = operacao.calcular(resultado, b);
+
+                System.out.println("Resultado: " + resultado);
+
+                // Adiciona ao histórico com o símbolo correto
+                historico.adicionarOperacao(
+                        valorAnterior,
+                        operacao.getSimbolo(),
+                        b,
+                        resultado
+                );
+
+            } catch (ArithmeticException e) {
+                System.out.println("Erro: " + e.getMessage());
             }
 
             System.out.println("\nDeseja continuar com esta operação?");
             System.out.println("1 -> Sim (repetir operação)");
             System.out.println("Qualquer número -> Não (irá permitir trocar operação)");
-            double b = view.getValorDouble();
-            String operacao = null;
-            if(select == 1){
-                operacao = "+";
-            }
-            else if(select == 2){
-                operacao = "-";
-            }
-            else if(select == 3){
-                operacao = "/";
-            }
-            else if(select == 4){
-                operacao = "*";
-            }
-            historico.adicionarOperacao(a,operacao,b,resultado);
-
             continueOperation = view.getValorInt();
 
         } while (continueOperation == 1);
