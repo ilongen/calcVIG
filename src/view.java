@@ -1,21 +1,29 @@
 import java.util.Scanner;
 
 public class view {
-    public void terminalController(){
-        Scanner input = new  Scanner(System.in);
+    Scanner input = new Scanner(System.in);
+
+    public void viewInitial(){
         System.out.println("-------------------");
-        System.out.println("---CALCULADORA VIG---");
+        System.out.println("CALCULADORA VIG");
         System.out.println("-------------------");
 
-
-
-
-        String escolhaUser = input.nextLine();
     }
-    public String operationBasic(){
-        System.out.println("Qual operação deseja selecionar? ");
-        System.out.println("+ , - , / , * ");
-        Scanner input = new Scanner(System.in);
-        return input.nextLine();
+    public int viewSelect(){
+        System.out.println("Você quer realizar que tipo de cálculo?");
+        System.out.println("1- Básico");
+        System.out.println("2- Complexo");
+        int selectUser =  input.nextInt();
+        while(selectUser < 1 || selectUser > 2){
+            System.out.println("Operação não localizada, tente novamente!");
+            selectUser = input.nextInt();
+        }
+        return selectUser;
+    }
+
+    public void viewFinal(){
+        System.out.println("------------------");
+        System.out.println("Agradecemos pelo uso");
+        System.out.println("------------------");
     }
 }
