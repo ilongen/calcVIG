@@ -1,17 +1,31 @@
-public class calcComplex extends typeOperation{
-    double valor;
-    double percentage;
+
+public class calcComplex{
+    private double valor;
+    private double percentage;
+
+    public calcComplex(double a, double b){
+        setValor(a);
+        setPorcentagem(b);
+    }
+    public double setValor(double valor){
+        this.valor = valor;
+        return valor;
+    }
+    public double setPorcentagem(double percentage){
+        this.percentage = percentage;
+        return percentage;
+    }
+
+    public double getPercentage() {
+        return percentage;
+    }
+    public double getValor() {
+        return valor;
+    }
 
     public double porcentagem(){
-        System.out.println("Digite seu valor");
-        valor = input.nextDouble();
-        System.out.println("Digite sua porcentagem");
-        percentage = input.nextDouble();
+        double valor = getValor();
+        double percentage = getPercentage();
         return (valor * percentage)/100;
-    }
-    public double log(){
-        System.out.println("Digite seu valor");
-        valor = input.nextDouble();
-        return Math.log10(valor);
     }
 }

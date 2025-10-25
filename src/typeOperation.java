@@ -1,19 +1,17 @@
-import java.util.Scanner;
-
 public class typeOperation{
-    Scanner input = new Scanner(System.in);
+    private final view view;
     private final calcBasic calculator;
     private final historicoCalc historico;
 
     public typeOperation(){
+        this.view = new view();
         this.calculator = new calcBasic();
         this.historico = new historicoCalc();
     }
 
     public void calcinitial(){
         System.out.println("Digite seu primeiro valor:");
-        double a = input.nextDouble();
-
+        double a = view.getValorDouble();
         int continuarPrograma;
 
         do {
@@ -22,13 +20,13 @@ public class typeOperation{
             System.out.println("================================");
             System.out.println("Qual operação deseja selecionar? ");
             System.out.println("1: + , 2: - , 3: / , 4: * ");
-            int select = input.nextInt();
+            int select = view.getValorInt();
 
             while(select < 1 || select > 4){
                 System.out.println("Operação não localizada, tente novamente!");
                 System.out.println("---------------------------------");
                 System.out.println("Qual operação deseja selecionar?");
-                select = input.nextInt();
+                select = view.getValorInt();
             }
 
             a = operationBasic(select, a);
@@ -39,7 +37,7 @@ public class typeOperation{
             System.out.println("Deseja fazer OUTRA operação com esse resultado?");
             System.out.println("1 - Sim");
             System.out.println("Caso queira sair apenas clicar em qualquer número!");
-            continuarPrograma = input.nextInt();
+            continuarPrograma = view.getValorInt();
 
         } while (continuarPrograma == 1);
         System.out.println("\nResultado final: " + a);
@@ -74,7 +72,7 @@ public class typeOperation{
             System.out.println("\nDeseja continuar com esta operação?");
             System.out.println("1 -> Sim (repetir operação)");
             System.out.println("Qualquer número -> Não (irá permitir trocar operação)");
-            double b = calculator.getB();
+            double b = view.getValorDouble();
             String operacao = null;
             if(select == 1){
                 operacao = "+";
@@ -90,7 +88,7 @@ public class typeOperation{
             }
             historico.adicionarOperacao(a,operacao,b,resultado);
 
-            continueOperation = input.nextInt();
+            continueOperation = view.getValorInt();
 
         } while (continueOperation == 1);
 

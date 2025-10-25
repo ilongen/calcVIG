@@ -3,7 +3,7 @@ public class main {
 
         view view = new view();
         typeOperation operation = new typeOperation();
-        typeOperation2 operation2 = new typeOperation2();
+        typeOperation2 operation2 = new typeOperation2(view);
         view.viewInitial();
         int select = view.viewSelect();
         if(select == 1){

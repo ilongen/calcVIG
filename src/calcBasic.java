@@ -23,7 +23,4 @@ public class calcBasic{
         this.b = input.nextDouble();
         return a-b;
     }
-    public double getB(){
-        return this.b;
-    }
 }

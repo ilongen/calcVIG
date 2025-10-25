@@ -26,4 +26,11 @@ public class view {
         System.out.println("Agradecemos pelo uso");
         System.out.println("------------------");
     }
+
+    public double getValorDouble(){
+        return input.nextDouble();
+    }
+    public int getValorInt(){
+        return input.nextInt();
+    }
 }
