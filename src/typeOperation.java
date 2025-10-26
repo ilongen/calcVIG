@@ -1,6 +1,6 @@
 public record typeOperation(view view, historicoCalc historico) {
 
-    public void calcinitial() {
+    public void iniciar() {
         System.out.println("Digite seu primeiro valor:");
         double a = view.getValorDouble();
         int continuarPrograma;

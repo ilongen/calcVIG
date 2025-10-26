@@ -11,7 +11,7 @@ public class main {
         int select = view.viewSelect();
 
         if (select == 1) {
-            operation.calcinitial();
+            operation.iniciar();
         } else {
             operation2.operationComplex();
         }
